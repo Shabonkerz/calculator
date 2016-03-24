@@ -93,11 +93,24 @@ export default class Calculator {
         }
     }
 
-    calculate ()
+    calculate (operation)
     {
-        const result = this.operation.operation(this.operands.left, this.operands.right || this.operands.left);
+        const op = operation || this.operation;
 
+        if (op === null)
+        {
+            return this.operands.left;
+        }
+
+        // Right operand is optional. If omitted, left operand will be used as the right operand. (eg. '9*=' becomes '9*9=')
+        let result = op.operation(this.operands.left, this.operands.right === null ? this.operands.left : this.operands.right);
+
+        // Report Infinity as NaN.
+        result = isFinite(result) ? result : NaN;
+
+        // Save result as the left oeprand of next operation.
         this.operands.left = result;
+
         return result;
     }
 
