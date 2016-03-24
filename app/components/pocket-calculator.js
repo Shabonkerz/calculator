@@ -66,7 +66,6 @@ export default Ember.Component.extend({
         calculate () {
             if (this.get('display.isInput')) this.addOperand();
 
-            // TODO: Handle errors.
             const result = this.get('calculator').calculate();
 
             this.showResult(result);

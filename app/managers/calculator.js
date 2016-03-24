@@ -14,18 +14,12 @@ const operationMapping = {
     '+': new Operation ( (a, b) => a + b, operationType.binary ),
     '-': new Operation ( (a, b) => a - b, operationType.binary ),
     '*': new Operation ( (a, b) => a * b, operationType.binary ),
-    '/': new Operation ( (a, b) => {
-        if (b === 0)
-        {
-            throw new Error('Division by zero.');
-        }
-        return a / b;
-    },  operationType.binary ),
+    '/': new Operation ( (a, b) => a / b, operationType.binary ),
     '%': new Operation ( (a) => a / 100, operationType.unary ),
     '+/-': new Operation ( (a) => a !== 0 ? -1 * a : 0, operationType.unary )
 };
 
-// TODO: Clean, and add jsdocs.
+// TODO: Clean, and add docblockr comments for jsdocs.
 export default class Calculator {
 
     constructor () {
