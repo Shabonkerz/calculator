@@ -29,7 +29,7 @@ export default Ember.Component.extend({
     },
 
     showResult(result) {
-        this.set('display.value', result);
+        this.set('display.value', result.toString());
         this.set('display.isInput', false);
     },
 
