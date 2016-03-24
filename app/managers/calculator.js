@@ -1,15 +1,28 @@
+const operationType = {
+    unary: 1,
+    binary: 2
+};
+
+class Operation {
+    constructor (operation, type) {
+        this.operation = operation;
+        this.type = type;
+    }
+}
 
 const operationMapping = {
-    '+': (a, b) => a + b,
-    '-': (a, b) => a - b,
-    '*': (a, b) => a * b,
-    '/': (a, b) => {
+    '+': new Operation ( (a, b) => a + b, operationType.binary ),
+    '-': new Operation ( (a, b) => a - b, operationType.binary ),
+    '*': new Operation ( (a, b) => a * b, operationType.binary ),
+    '/': new Operation ( (a, b) => {
         if (b === 0)
         {
             throw new Error('Division by zero.');
         }
         return a / b;
-    }
+    },  operationType.binary ),
+    '%': new Operation ( (a) => a / 100, operationType.unary ),
+    '+/-': new Operation ( (a) => a !== 0 ? -1 * a : 0, operationType.unary )
 };
 
 // TODO: Clean, and add jsdocs.
@@ -39,33 +52,43 @@ export default class Calculator {
         this.operands.left = operand;
     }
 
-    setOperation (operation) {
-        let result;
+    setOperation (op) {
 
-        if (this.operation !== null && this.operands.left !== null && this.operands.right !== null )
-        {
-            result = this.calculate();
-        }
-        else
-        {
-            result = this.operands.left;
-        }
+        const operation = operationMapping[op];
 
-        this.operation = operation;
-
-        return result;
-    }
-
-    calculate ()
-    {
-        // TODO: Handle cases when one or more operands or operation is null.
-
-        if (operationMapping[this.operation] === undefined)
+        if (operation === undefined)
         {
             throw new Error('Operation not supported.');
         }
 
-        const result = operationMapping[this.operation](this.operands.left, this.operands.right || this.operands.left);
+        if (operation.type === operationType.unary)
+        {
+            this.operation = operation;
+            return this.calculate();
+        }
+
+        if (operation.type === operationType.binary)
+        {
+            let result;
+
+            if (this.operation !== null && this.operands.left !== null && this.operands.right !== null )
+            {
+                result = this.calculate();
+            }
+            else
+            {
+                result = this.operands.left;
+            }
+
+            this.operation = operation;
+
+            return result;
+        }
+    }
+
+    calculate ()
+    {
+        const result = this.operation.operation(this.operands.left, this.operands.right || this.operands.left);
 
         this.operands.left = result;
         return result;
