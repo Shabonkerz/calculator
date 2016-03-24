@@ -4,6 +4,9 @@ import Calculator from '../managers/calculator';
 export default Ember.Component.extend({
     display: {
         value: '0',
+
+        // Indicates whether the display is showing the result of a calculation,
+        // or input from the user.
         isInput: true
     },
     calculator: new Calculator(),
