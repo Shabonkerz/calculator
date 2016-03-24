@@ -31,7 +31,6 @@ export default class Calculator {
     }
 
     addOperand (operand) {
-        // NOTE: Last stopping point.
         if (this.operands.left !== null && this.operands.right !== null)
         {
             this.clear();
