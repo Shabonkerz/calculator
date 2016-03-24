@@ -36,7 +36,7 @@ export default class Calculator {
             this.clear();
         }
 
-        if (this.operation !== null)
+        if (this.operation !== null && this.operation.type === operationType.binary)
         {
             this.operands.right = operand;
             return;
@@ -56,15 +56,29 @@ export default class Calculator {
 
         if (operation.type === operationType.unary)
         {
-            this.operation = operation;
-            return this.calculate();
+            // Finish binary operation if we have one.
+            if (this.operation.type === operationType.binary)
+            {
+                this.calculate();
+                this.operands.right = null;
+            }
+
+            // No need to save unary operations since they happen immediately.
+            this.operation = null;
+
+            // Unary operations operate on the left operand only, but the last
+            // operand added may be on the right.
+            this.operands.left = this.operands.right || this.operands.left;
+            this.operands.right = null;
+
+            return this.calculate(operation);
         }
 
         if (operation.type === operationType.binary)
         {
             let result;
 
-            if (this.operation !== null && this.operands.left !== null && this.operands.right !== null )
+            if (this.operation !== null && this.operands.left !== null)
             {
                 result = this.calculate();
             }
