@@ -2,6 +2,11 @@ import Ember from 'ember';
 import Calculator from '../managers/calculator';
 
 export default Ember.Component.extend({
+
+    // Ember component specific properties for css/html.
+    tagName: 'div',
+    classNames: 'calculator',
+
     display: {
         value: '0',
 
