@@ -12,7 +12,20 @@ export default Ember.Component.extend({
     calculator: new Calculator(),
 
     addOperand() {
-        this.get('calculator').addOperand(parseInt(this.get('display.value'), 10));
+        const value = this.get('display.value');
+
+        let parsedValue;
+
+        if (value.indexOf('.') > -1)
+        {
+            parsedValue = parseFloat(value, 10);
+        }
+        else
+        {
+            parsedValue = parseInt(value, 10);
+        }
+
+        this.get('calculator').addOperand(parsedValue, 10);
     },
 
     showResult(result) {
