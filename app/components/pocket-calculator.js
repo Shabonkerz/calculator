@@ -48,6 +48,11 @@ export default Ember.Component.extend({
                 return;
             }
 
+            // Make deicmals unique.
+            if (input === '.' && this.get('display.value').indexOf('.') > -1) {
+                return;
+            }
+
             // Append.
             this.set('display.value', this.get('display.value') + input);
         },
