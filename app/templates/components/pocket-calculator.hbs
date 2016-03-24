@@ -1,20 +1,20 @@
-<input class="display" type="text" name="display" readonly value="{{display.value}}">
-<input class="operation" type="button" value="C" {{action 'clear'}}>
-<input class="operation" type="button" value="+/-" {{action 'setOperation' '+/-'}}>
-<input class="operation" type="button" value="%" {{action 'setOperation' '%'}}>
-<input class="number" type="button" value="1" {{action 'appendInput' '1'}}>
-<input class="number" type="button" value="2" {{action 'appendInput' '2'}}>
-<input class="number" type="button" value="3" {{action 'appendInput' '3'}}>
-<input class="number" type="button" value="4" {{action 'appendInput' '4'}}>
-<input class="number" type="button" value="5" {{action 'appendInput' '5'}}>
-<input class="number" type="button" value="6" {{action 'appendInput' '6'}}>
-<input class="number" type="button" value="7" {{action 'appendInput' '7'}}>
-<input class="number" type="button" value="8" {{action 'appendInput' '8'}}>
-<input class="number" type="button" value="9" {{action 'appendInput' '9'}}>
-<input class="number" type="button" value="0" {{action 'appendInput' '0'}}>
-<input class="number" type="button" value="." {{action 'appendInput' '.'}}>
-<input class="operation" type="button" value="+" {{action 'setOperation' '+'}}>
-<input class="operation" type="button" value="-" {{action 'setOperation' '-'}}>
-<input class="operation" type="button" value="*" {{action 'setOperation' '*'}}>
-<input class="operation" type="button" value="/" {{action 'setOperation' '/'}}>
-<input class="calculate" type="button" value="=" {{action 'calculate'}}>
+<div class="button display">{{display.value}}</div>
+<div class="button operation" {{action 'clear'}}>C</div>
+<div class="button operation" {{action 'setOperation' '+/-'}}>+/-</div>
+<div class="button operation" {{action 'setOperation' '%'}}>%</div>
+<div class="button operation" {{action 'setOperation' '/'}}>/</div>
+<div class="button number" {{action 'appendInput' '1'}}>1</div>
+<div class="button number" {{action 'appendInput' '2'}}>2</div>
+<div class="button number" {{action 'appendInput' '3'}}>3</div>
+<div class="button operation" {{action 'setOperation' '+'}}>+</div>
+<div class="button number" {{action 'appendInput' '4'}}>4</div>
+<div class="button number" {{action 'appendInput' '5'}}>5</div>
+<div class="button number" {{action 'appendInput' '6'}}>6</div>
+<div class="button operation" {{action 'setOperation' '-'}}>-</div>
+<div class="button number" {{action 'appendInput' '7'}}>7</div>
+<div class="button number" {{action 'appendInput' '8'}}>8</div>
+<div class="button number" {{action 'appendInput' '9'}}>9</div>
+<div class="button operation" {{action 'setOperation' '*'}}>x</div>
+<div class="button number" {{action 'appendInput' '0'}}>0</div>
+<div class="button number" {{action 'appendInput' '.'}}>.</div>
+<div class="button calculate" {{action 'calculate'}}>=</div>
