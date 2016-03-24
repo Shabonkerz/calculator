@@ -2,44 +2,37 @@ import Ember from 'ember';
 import Calculator from '../managers/calculator';
 
 export default Ember.Component.extend({
-    display: '0',
+    display: { value: '0', isInput: true },
     calculator: new Calculator(),
 
-    // Flag for clearing the display upon next input.
-    clearOnInput: false,
-
-    // Indicates whether the display is showing input from user, or output from calculation.
-    displayIsResult: false,
-
     addOperand () {
-        this.set('clearOnInput', true);
-        this.get('calculator').addOperand(parseInt(this.get('display'), 10));
+        this.get('calculator').addOperand(parseInt(this.get('display.value'), 10));
     },
 
     showResult (result) {
-        this.set('display', result);
-        this.set('displayIsResult', true);
+        this.set('display.value', result);
+        this.set('display.isInput', false);
     },
 
     actions: {
         // Appends 0-9, or .
         appendInput (input) {
 
-            if (this.get('displayIsResult'))
+            if (!this.get('display.isInput'))
             {
-                this.set('display', '');
-                this.set('displayIsResult', false);
+                this.set('display.value', '');
+                this.set('display.isInput', true);
             }
 
             // No leading 0s.
-            if (this.get('display') === '0')
+            if (this.get('display.value') === '0')
             {
-                this.set('display', input);
+                this.set('display.value', input);
                 return;
             }
 
             // Append.
-            this.set('display', this.get('display') + input);
+            this.set('display.value', this.get('display.value') + input);
         },
 
         setOperation (operation) {
@@ -49,7 +42,7 @@ export default Ember.Component.extend({
         },
 
         calculate () {
-            if (!this.get('displayIsResult') ) this.addOperand();
+            if (this.get('display.isInput') ) this.addOperand();
 
             // TODO: Handle errors.
             const result = this.get('calculator').calculate();
@@ -58,7 +51,7 @@ export default Ember.Component.extend({
         },
 
         clear () {
-            this.set('display', '0');
+            this.set('display.value', '0');
             this.get('calculator').clear();
         }
     }
