@@ -29,24 +29,24 @@
         box-sizing: inherit;
         float: left;
         background-color: #3B484F;
-        color: #FFF;
+        color: $offwhite;
         font-size: 2em;
         padding-top: 30px;
         font-weight: 300;
     }
 
     .top {
-        background-color: #E6EAEC;
+        background-color: darken(#E6EAEC, 10);
+        color: #72848B;
     }
 
     .right {
-        color: #FFF;
-        background-color: rgb(198, 0, 0);
-        border-right: 1px solid rgb(198, 0, 0);
+        color: $offwhite;
+        background-color: rgb(198, 0, 53);
     }
 
     .number {
-        background-color: #FFF;
+        background-color: $offwhite;
         color: #72848B;
     }
     .zero {
