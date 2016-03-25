@@ -22,6 +22,27 @@
         float: left;
     }
 
+    $right-button-bg-color: rgb(198, 0, 53);
+
+    .right {
+        color: $offwhite;
+        background-color: $right-button-bg-color;
+
+    }
+
+    .right.down {
+        background-color: lighten($right-button-bg-color, 10);
+    }
+
+    .number {
+        background-color: $offwhite;
+        color: #72848B;
+    }
+
+    .number.down {
+        background-color: lighten($offwhite, 3);
+    }
+
     .display {
         width: 100%;
         text-align: right;
@@ -35,20 +56,17 @@
         font-weight: 300;
     }
 
+    $top-button-bg-color: darken(#E6EAEC, 10);
+
     .top {
-        background-color: darken(#E6EAEC, 10);
+        background-color: $top-button-bg-color;
         color: #72848B;
     }
 
-    .right {
-        color: $offwhite;
-        background-color: rgb(198, 0, 53);
+    .top.down {
+        background-color: lighten($top-button-bg-color, 3);
     }
 
-    .number {
-        background-color: $offwhite;
-        color: #72848B;
-    }
     .zero {
         width: 1/2 * 100%;
     }
