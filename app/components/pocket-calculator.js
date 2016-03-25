@@ -78,6 +78,7 @@ export default Ember.Component.extend({
 
         clear () {
             this.set('display.value', '0');
+            this.set('display.isInput', true);
             this.get('calculator').clear();
         }
     }
