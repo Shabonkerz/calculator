@@ -11,5 +11,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{pocket-calculator}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.notEqual(this.$().text().trim(), null);
 });

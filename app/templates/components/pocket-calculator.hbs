@@ -1,20 +1,20 @@
 <div class="display">{{display.value}}</div>
-<div class="button operation top" {{action 'clear'}}>C</div>
-<div class="button operation top" {{action 'setOperation' '+/-'}}>+/-</div>
-<div class="button operation top" {{action 'setOperation' '%'}}>%</div>
-<div class="button operation right" {{action 'setOperation' '/'}}>&divide;</div>
-<div class="button number" {{action 'appendInput' '1'}}>1</div>
-<div class="button number" {{action 'appendInput' '2'}}>2</div>
-<div class="button number" {{action 'appendInput' '3'}}>3</div>
-<div class="button operation right" {{action 'setOperation' '*'}}>×</div>
-<div class="button number" {{action 'appendInput' '4'}}>4</div>
-<div class="button number" {{action 'appendInput' '5'}}>5</div>
-<div class="button number" {{action 'appendInput' '6'}}>6</div>
-<div class="button operation right" {{action 'setOperation' '-'}}>-</div>
-<div class="button number" {{action 'appendInput' '7'}}>7</div>
-<div class="button number" {{action 'appendInput' '8'}}>8</div>
-<div class="button number" {{action 'appendInput' '9'}}>9</div>
-<div class="button operation right" {{action 'setOperation' '+'}}>+</div>
-<div class="button number zero" {{action 'appendInput' '0'}}>0</div>
-<div class="button number" {{action 'appendInput' '.'}}>.</div>
-<div class="button operation right" {{action 'calculate'}}>=</div>
+{{#calculator-button class="operation top" action=(action 'clear')}}C{{/calculator-button}}
+{{#calculator-button class="operation top" action=(action 'setOperation' '+/-')}}+/-{{/calculator-button}}
+{{#calculator-button class="operation top" action=(action 'setOperation' '%')}}%{{/calculator-button}}
+{{#calculator-button class="operation right" action=(action 'setOperation' '/')}}&divide;{{/calculator-button}}
+{{#calculator-button class="number" action=(action 'appendInput' '1')}}1{{/calculator-button}}
+{{#calculator-button class="number" action=(action 'appendInput' '2')}}2{{/calculator-button}}
+{{#calculator-button class="number" action=(action 'appendInput' '3')}}3{{/calculator-button}}
+{{#calculator-button class="operation right" action=(action 'setOperation' '*')}}×{{/calculator-button}}
+{{#calculator-button class="number" action=(action 'appendInput' '4')}}4{{/calculator-button}}
+{{#calculator-button class="number" action=(action 'appendInput' '5')}}5{{/calculator-button}}
+{{#calculator-button class="number" action=(action 'appendInput' '6')}}6{{/calculator-button}}
+{{#calculator-button class="operation right" action=(action 'setOperation' '-')}}-{{/calculator-button}}
+{{#calculator-button class="number" action=(action 'appendInput' '7')}}7{{/calculator-button}}
+{{#calculator-button class="number" action=(action 'appendInput' '8')}}8{{/calculator-button}}
+{{#calculator-button class="number" action=(action 'appendInput' '9')}}9{{/calculator-button}}
+{{#calculator-button class="operation right" action=(action 'setOperation' '+')}}+{{/calculator-button}}
+{{#calculator-button class="number zero" action=(action 'appendInput' '0')}}0{{/calculator-button}}
+{{#calculator-button class="number" action=(action 'appendInput' '.')}}.{{/calculator-button}}
+{{#calculator-button class="operation right" action=(action 'calculate')}}={{/calculator-button}}
