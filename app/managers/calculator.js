@@ -57,7 +57,7 @@ export default class Calculator {
         if (operation.type === operationType.unary)
         {
             // Finish binary operation if we have one.
-            if (this.operation.type === operationType.binary)
+            if (this.operation !== null && this.operation.type === operationType.binary)
             {
                 this.calculate();
                 this.operands.right = null;
