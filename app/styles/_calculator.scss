@@ -57,6 +57,9 @@
         font-size: 2em;
         padding-top: 30px;
         font-weight: 300;
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
     }
 
     $top-button-bg-color: darken(#E6EAEC, 10);
