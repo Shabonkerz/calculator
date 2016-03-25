@@ -2,6 +2,7 @@
 
 ### What is left to do:
 
+* Have it work with keyboard input. (Shouldn't take but an hour tops?)
 * AC/C button. Currently, it performs and "all clear" upon press.
 * Add unit tests/integration tests.
 * Find a way to integrate eslint in ember. I attempted such with Ember 1.13.8 and hit a brick wall since jshint was more tightly coupled with Ember than thought. Will revisit with Ember 2.4+ as time allows.
