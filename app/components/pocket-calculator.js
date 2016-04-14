@@ -1,11 +1,18 @@
 import Ember from 'ember';
 import Calculator from '../managers/calculator';
 
-export default Ember.Component.extend({
+const MAX_DISPLAY_WIDTH = 6;
+const DEFAULT_DISPLAY_FONT_SIZE = 2;
+
+---
+
+export default Ember.Component.extend(Ember.Evented, {
 
     // Ember component specific properties for css/html.
     tagName: 'div',
     classNames: 'calculator',
+    attributeBindings: ['tabindex'],
+    tabindex: 0,
 
     display: {
         value: '0',
@@ -15,6 +22,22 @@ export default Ember.Component.extend({
         isInput: true
     },
     calculator: new Calculator(),
+
+    onDisplayValueChange: function () {
+        const count = this.get('display.value').length;
+
+        if ( count > MAX_DISPLAY_WIDTH )
+        {
+            const newFontSize = DEFAULT_DISPLAY_FONT_SIZE - ((count - MAX_DISPLAY_WIDTH)*0.1);
+            Ember.$(this.get('element')).find('.display').css('font-size', newFontSize + 'em');
+        }
+        else {
+
+            // Reset.
+            Ember.$(this.get('element')).find('.display').css('font-size', DEFAULT_DISPLAY_FONT_SIZE + 'em');
+        }
+
+    }.observes('display.value'),
 
     addOperand() {
         const value = this.get('display.value');
@@ -36,6 +59,10 @@ export default Ember.Component.extend({
     showResult(result) {
         this.set('display.value', result.toString());
         this.set('display.isInput', false);
+    },
+
+    keyPress (e) {
+        this.trigger('keypress:' + e.charCode, e);
     },
 
     actions: {
