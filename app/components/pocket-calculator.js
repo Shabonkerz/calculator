@@ -4,8 +4,6 @@ import Calculator from '../managers/calculator';
 const MAX_DISPLAY_WIDTH = 6;
 const DEFAULT_DISPLAY_FONT_SIZE = 2;
 
----
-
 export default Ember.Component.extend(Ember.Evented, {
 
     // Ember component specific properties for css/html.
