@@ -14,44 +14,44 @@
 
     $offwhite: #EAEAEA;
 
+    $right-button-bg-color: rgb(198, 0, 53);
+
+    .row {
+        display: flex;
+        width: 100%;
+    }
+
+    .button-row {
+        @extend .row;
+        :last-child {
+            color: $offwhite;
+            background-color: $right-button-bg-color;
+            width: 25%;
+        }
+        :last-child.down {
+            background-color: lighten($right-button-bg-color, 10);
+        }
+    }
+
     .button {
+        background-color: $offwhite;
+        color: #72848B;
         text-align: center;
-        width: 1/4 * 100%;
         display: inline-block;
-        height: 1/7 * 100%;
         box-sizing: inherit;
         padding: 8px;
         cursor: pointer;
-        float: left;
+        flex: 1;
     }
 
-    $right-button-bg-color: rgb(198, 0, 53);
-
-    .right {
-        color: $offwhite;
-        background-color: $right-button-bg-color;
-
-    }
-
-    .right.down {
-        background-color: lighten($right-button-bg-color, 10);
-    }
-
-    .number {
-        background-color: $offwhite;
-        color: #72848B;
-    }
-
-    .number.down {
+    .button.down {
         background-color: lighten($offwhite, 3);
     }
 
     .display {
-        width: 100%;
         text-align: right;
         padding: 16px;
         box-sizing: inherit;
-        float: left;
         background-color: #3B484F;
         color: $offwhite;
         font-size: 2em;
@@ -60,20 +60,15 @@
         white-space: nowrap;
         overflow-x: hidden;
         text-overflow: ellipsis;
-    }
-
-    $top-button-bg-color: darken(#E6EAEC, 10);
-
-    .top {
-        background-color: $top-button-bg-color;
-        color: #72848B;
-    }
-
-    .top.down {
-        background-color: lighten($top-button-bg-color, 3);
+        flex: 1;
     }
 
     .zero {
-        width: 1/2 * 100%;
+        flex: 2.25;
+    }
+
+    .calculate {
+        flex: 1;
+        align-content: center;
     }
 }
