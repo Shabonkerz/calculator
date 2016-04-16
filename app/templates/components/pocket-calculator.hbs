@@ -1,70 +1,70 @@
 <div class="row">
-    <div class="display">{{display.value}}</div>
+    <div class="display">{{display}}</div>
 </div>
 <div class="button-row">
     {{#calculator-button action=(action 'clear') key='c'}}
         AC
     {{/calculator-button}}
-    {{#calculator-button action=(action 'setOperation' '+/-') key='n'}}
+    {{#calculator-button action=(action 'transform' '+/-') key='n'}}
         +/-
     {{/calculator-button}}
-    {{#calculator-button action=(action 'setOperation' '%') key='%'}}
+    {{#calculator-button action=(action 'transform' '%') key='%'}}
         %
     {{/calculator-button}}
-    {{#calculator-button action=(action 'setOperation' '/') key='/'}}
+    {{#calculator-button action=(action 'append' '/') key='/'}}
         &divide;
     {{/calculator-button}}
 </div>
 <div class="button-row">
-    {{#calculator-button action=(action 'appendInput' '1') key='1'}}
+    {{#calculator-button action=(action 'append' '1') key='1'}}
         1
     {{/calculator-button}}
-    {{#calculator-button action=(action 'appendInput' '2') key='2'}}
+    {{#calculator-button action=(action 'append' '2') key='2'}}
         2
     {{/calculator-button}}
-    {{#calculator-button action=(action 'appendInput' '3') key='3'}}
+    {{#calculator-button action=(action 'append' '3') key='3'}}
         3
     {{/calculator-button}}
-    {{#calculator-button action=(action 'setOperation' '*') key='*'}}
+    {{#calculator-button action=(action 'append' '*') key='*'}}
         ×
     {{/calculator-button}}
 </div>
 <div class="button-row">
-    {{#calculator-button action=(action 'appendInput' '4') key='4'}}
+    {{#calculator-button action=(action 'append' '4') key='4'}}
         4
     {{/calculator-button}}
-    {{#calculator-button action=(action 'appendInput' '5') key='5'}}
+    {{#calculator-button action=(action 'append' '5') key='5'}}
         5
     {{/calculator-button}}
-    {{#calculator-button action=(action 'appendInput' '6') key='6'}}
+    {{#calculator-button action=(action 'append' '6') key='6'}}
         6
     {{/calculator-button}}
-    {{#calculator-button action=(action 'setOperation' '-') key='-'}}
+    {{#calculator-button action=(action 'append' '-') key='-'}}
         -
     {{/calculator-button}}
 </div>
 <div class="button-row">
-    {{#calculator-button action=(action 'appendInput' '7') key='7'}}
+    {{#calculator-button action=(action 'append' '7') key='7'}}
         7
     {{/calculator-button}}
-    {{#calculator-button action=(action 'appendInput' '8') key='8'}}
+    {{#calculator-button action=(action 'append' '8') key='8'}}
         8
     {{/calculator-button}}
-    {{#calculator-button action=(action 'appendInput' '9') key='9'}}
+    {{#calculator-button action=(action 'append' '9') key='9'}}
         9
     {{/calculator-button}}
-    {{#calculator-button action=(action 'setOperation' '+') key='+'}}
+    {{#calculator-button action=(action 'append' '+') key='+'}}
         +
     {{/calculator-button}}
 </div>
 <div class="button-row">
-    {{#calculator-button class="number zero" action=(action 'appendInput' '0') key='0'}}
+    {{#calculator-button class="number zero" action=(action 'append' '0') key='0'}}
         0
     {{/calculator-button}}
-    {{#calculator-button action=(action 'appendInput' '.') key='.'}}
+    {{#calculator-button action=(action 'append' '.') key='.'}}
         .
     {{/calculator-button}}
-    {{#calculator-button action=(action 'calculate') key='='}}
+    {{#calculator-button action=(action 'evaluate') key='='}}
         =
     {{/calculator-button}}
 </div>
