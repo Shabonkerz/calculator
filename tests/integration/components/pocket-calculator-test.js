@@ -1,15 +1,30 @@
-import { moduleForComponent, test } from 'ember-qunit';
+/* jshint expr:true */
+import { expect } from 'chai';
+import {
+  describeComponent,
+  it
+} from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('pocket-calculator', 'Integration | Component | pocket calculator', {
-  integration: true
-});
+describeComponent(
+  'pocket-calculator',
+  'Integration: PocketCalculatorComponent',
+  {
+    integration: true
+  },
+  function() {
+    it('renders', function() {
+      // Set any properties with this.set('myProperty', 'value');
+      // Handle any actions with this.on('myAction', function(val) { ... });
+      // Template block usage:
+      // this.render(hbs`
+      //   {{#pocket-calculator}}
+      //     template content
+      //   {{/pocket-calculator}}
+      // `);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{pocket-calculator}}`);
-
-  assert.notEqual(this.$().text().trim(), null);
-});
+      this.render(hbs`{{pocket-calculator}}`);
+      expect(this.$()).to.have.length(1);
+    });
+  }
+);
