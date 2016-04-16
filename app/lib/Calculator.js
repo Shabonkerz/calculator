@@ -47,7 +47,7 @@ export class Display extends TinyEmitter {
             return;
         }
 
-        if ((this._value === '0' || this.showingOutput) && numberRegex.test(char)) {
+        if ((this._value === '0' || this.showingOutput) && (numberRegex.test(char) || char === '(' || char === ')')) {
             this._value = '';
         }
 

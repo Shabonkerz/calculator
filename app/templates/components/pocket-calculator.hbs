@@ -3,7 +3,7 @@
 </div>
 <div class="button-row">
     {{#calculator-button action=(action 'clear') key='c'}}
-        AC
+        C
     {{/calculator-button}}
     {{#calculator-button action=(action 'transform' '+/-') key='n'}}
         +/-
@@ -11,7 +11,13 @@
     {{#calculator-button action=(action 'transform' '%') key='%'}}
         %
     {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '/') key='/'}}
+    {{#calculator-button action=(action 'append' '(') key='('}}
+        (
+    {{/calculator-button}}
+    {{#calculator-button action=(action 'append' ')') key=')'}}
+        )
+    {{/calculator-button}}
+    {{#calculator-button class="divide" action=(action 'append' '/') key='/'}}
         &divide;
     {{/calculator-button}}
 </div>
@@ -58,7 +64,7 @@
     {{/calculator-button}}
 </div>
 <div class="button-row">
-    {{#calculator-button class="number zero" action=(action 'append' '0') key='0'}}
+    {{#calculator-button class="zero" action=(action 'append' '0') key='0'}}
         0
     {{/calculator-button}}
     {{#calculator-button action=(action 'append' '.') key='.'}}
