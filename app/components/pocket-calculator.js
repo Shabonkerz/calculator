@@ -44,12 +44,15 @@ export default Ember.Component.extend(Ember.Evented, {
 
 
     actions: {
+
         transform (op) {
             this.get('calculator.display').transform(op);
         },
+
         clear () {
             this.get('calculator').clear();
         },
+
         evaluate () {
             this.get('calculator').evaluate();
         },

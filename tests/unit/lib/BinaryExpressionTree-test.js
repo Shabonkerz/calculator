@@ -78,5 +78,13 @@ describe('BinaryExpressionTree', () => {
             const result = BinaryExpressionTree.fromString('(1+1)*2');
             assert.equal(result.valueOf(), 4);
         });
+        it('should ignore open parentheses(left, no right): (3+3*3', () => {
+            const result = BinaryExpressionTree.fromString('(3+3*3');
+            assert.equal(result.valueOf(), 12);
+        });
+        it('should ignore open parentheses(no left, right): 3+3*3)', () => {
+            const result = BinaryExpressionTree.fromString('3+3*3)');
+            assert.equal(result.valueOf(), 12);
+        });
     });
 });
