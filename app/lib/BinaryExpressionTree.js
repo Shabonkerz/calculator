@@ -71,6 +71,7 @@ export default class BinaryExpressionTree {
     static *build () {
         let operators = [];
         let operands = [];
+        let leftParensExists = false;
 
         const onOperator = (op) => {
             while (operators.length && operators[operators.length - 1] !== '(' && op.precedence <= operators[operators.length - 1]) {
@@ -88,6 +89,9 @@ export default class BinaryExpressionTree {
         };
 
         const onRightParens = () => {
+            if (!leftParensExists) {
+                return;
+            }
             while (operators.length && operators[operators.length - 1] !== '(') {
                 const operator = operators.pop();
                 const right = operands.pop();
@@ -96,10 +100,12 @@ export default class BinaryExpressionTree {
             }
             // Pop left parens.
             operators.pop();
+            leftParensExists = false;
         }
 
         const onLeftParens = () => {
             operators.push('(');
+            leftParensExists = true;
         }
 
         while (true) {
