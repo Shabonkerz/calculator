@@ -126,6 +126,12 @@ export default class BinaryExpressionTree {
 
         while (operators.length) {
             const operator = operators.pop();
+
+            // Ignore unclosed left parentheses.
+            if (operator === '(') {
+                continue;
+            }
+
             const right = operands.pop();
             const left = operands.pop();
             operands.push(new BinaryOperationExpression(operator, left, right));
