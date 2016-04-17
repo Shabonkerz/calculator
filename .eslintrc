@@ -74,8 +74,9 @@
         "no-ternary": 0,
         "no-undefined": 0,
         "prefer-const": 1,
-        "prefer-reflect": 1,
+        "prefer-reflect": 0,
         "prefer-spread": 1,
+        "prefer-rest-params": 1,
         "radix": 2,
         "require-yield": 2,
         "semi": 2,
@@ -87,7 +88,8 @@
         "use-isnan": 2,
         "valid-typeof": 2,
         "wrap-iife": 2,
-        keyword-spacing: "error",
+        "keyword-spacing": "error",
+        "object-curly-spacing": 0
     },
     "env": {
         "browser": true,
