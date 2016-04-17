@@ -56,7 +56,7 @@
         "no-labels": ["error"],
         "no-lone-blocks": 2,
         "no-loop-func": 2,
-        "no-magic-numbers": ["warn", { "ignore": [0,1,2,3] }],
+        "no-magic-numbers": 0,
         "no-mixed-spaces-and-tabs": 2,
         "no-multi-spaces": 2,
         "no-negated-in-lhs": 2,
