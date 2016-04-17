@@ -2,7 +2,6 @@
 
 ### TODO:
 
-* Integrate eslint into the project.
 * Docs.
 * Responsiveness.
 * Customizability. (width, height, colors, etc.)
