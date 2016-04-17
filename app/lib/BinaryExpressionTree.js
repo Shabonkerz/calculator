@@ -1,150 +1,158 @@
+/* global _ */
+
 const numberRegex = /^\d+.?\d*$/;
 
 class Operation {
 
-    constructor (operation, precedence) {
-        this.operation = operation;
-        this.precedence = precedence;
-    }
+	constructor (operation, precedence) {
+		this.operation = operation;
+		this.precedence = precedence;
+	}
 
-    static find (operator) {
-        if (!(operator in operationMapping)) {
-            return null;
-        }
+	static find (operator) {
+		if (!(operator in operationMapping)) {
+			return null;
+		}
 
-        return operationMapping[operator];
-    }
+		return operationMapping[operator];
+	}
 }
 
 const operationMapping = {
-    '+': new Operation ( (a, b) => a.valueOf() + b.valueOf(), 1 ),
-    '-': new Operation ( (a, b) => a.valueOf() - b.valueOf(), 1 ),
-    '*': new Operation ( (a, b) => a.valueOf() * b.valueOf(), 2 ),
-    '/': new Operation ( (a, b) => a.valueOf() / b.valueOf(), 2 )
+	'+': new Operation((a, b) => a.valueOf() + b.valueOf(), 1),
+	'-': new Operation((a, b) => a.valueOf() - b.valueOf(), 1),
+	'*': new Operation((a, b) => a.valueOf() * b.valueOf(), 2),
+	'/': new Operation((a, b) => a.valueOf() / b.valueOf(), 2)
 };
 
 class Expression {
-    constructor (left, right) {
-        this.token = null;
-        this.left = left;
-        this.right = right;
-    }
+	constructor (left, right) {
+		this.token = null;
+		this.left = left;
+		this.right = right;
+	}
 
-    valueOf () {
-        return this.token;
-    }
+	valueOf () {
+		return this.token;
+	}
 }
 
 class NumericExpression extends Expression {
-    constructor (token, ...args) {
-        super(...args);
-        this.token = token;
-    }
+	constructor (token, ...args) {
+		super(...args);
+		this.token = token;
+	}
 }
 
 class BinaryOperationExpression extends Expression {
-    constructor (token, ...args) {
-        super(...args);
-        this.operation = Operation.find(token);
-    }
+	constructor (token, ...args) {
+		super(...args);
+		this.operation = Operation.find(token);
+	}
 
-    valueOf () {
-        return this.operation.operation(this.left, this.right);
-    }
+	valueOf () {
+		return this.operation.operation(this.left, this.right);
+	}
 
 }
 
 export default class BinaryExpressionTree {
 
-    static fromString (str) {
-        const builder = BinaryExpressionTree.build();
-        builder.next();
+	static fromString (str) {
+		const builder = BinaryExpressionTree.build();
 
-        // Match any number, operator, parentheses.
-        const tokens = str.match(/^(-?\d+\.?\d*)|(\+)|(-)|(\/)|(\*)|(\()|(\))|(-?\d+\.?\d*)/g);
-        _.forEach(tokens, (token) => {
-            builder.next(token);
-        });
-        return builder.next().value;
-    }
+		builder.next();
 
-    static *build () {
-        let operators = [];
-        let operands = [];
-        let leftParensExists = false;
+		// Match any number, operator, parentheses.
+		const tokens = str.match(/^(-?\d+\.?\d*)|(\+)|(-)|(\/)|(\*)|(\()|(\))|(-?\d+\.?\d*)/g);
 
-        const onOperator = (op) => {
-            while (operators.length && operators[operators.length - 1] !== '(' && op.precedence <= operators[operators.length - 1]) {
-                const operator = operators.pop();
-                const right = operands.pop();
-                const left = operands.pop();
-                operands.push(new BinaryOperationExpression(operator, left, right));
-            }
+		_.forEach(tokens, (token) => {
+			builder.next(token);
+		});
 
-            operators.push(op);
-        };
+		return builder.next().value;
+	}
 
-        const onNumber = (number) => {
-            operands.push(new NumericExpression(number));
-        };
+	static * build () {
+		const operators = [];
+		const operands = [];
+		let leftParensExists = false;
 
-        const onRightParens = () => {
-            if (!leftParensExists) {
-                return;
-            }
-            while (operators.length && operators[operators.length - 1] !== '(') {
-                const operator = operators.pop();
-                const right = operands.pop();
-                const left = operands.pop();
-                operands.push(new BinaryOperationExpression(operator, left, right));
-            }
-            // Pop left parens.
-            operators.pop();
-            leftParensExists = false;
-        }
+		const onOperator = (op) => {
+			while (operators.length && operators[operators.length - 1] !== '(' && op.precedence <= operators[operators.length - 1]) {
+				const operator = operators.pop();
+				const right = operands.pop();
+				const left = operands.pop();
 
-        const onLeftParens = () => {
-            operators.push('(');
-            leftParensExists = true;
-        }
+				operands.push(new BinaryOperationExpression(operator, left, right));
+			}
 
-        while (true) {
-            const token = yield token;
-            const operation = Operation.find(token);
+			operators.push(op);
+		};
 
-            if (operation) {
-                onOperator(token);
-            }
-            else if (numberRegex.test(token)) {
-                onNumber(token.indexOf('.') > -1 ? parseFloat(token, 10) : parseInt(token, 10));
-            }
-            else if (token === '(') {
-                onLeftParens();
-            }
-            else if (token === ')') {
-                onRightParens(')');
-            }
-            // End we've reached the end of the line.
-            else if (token === null || token === undefined) {
-                break;
-            }
-        }
+		const onNumber = (number) => {
+			operands.push(new NumericExpression(number));
+		};
 
-        while (operators.length) {
-            const operator = operators.pop();
+		const onRightParens = () => {
+			if (!leftParensExists) {
+				return;
+			}
+			while (operators.length && operators[operators.length - 1] !== '(') {
+				const operator = operators.pop();
+				const right = operands.pop();
+				const left = operands.pop();
 
-            // Ignore unclosed left parentheses.
-            if (operator === '(') {
-                continue;
-            }
+				operands.push(new BinaryOperationExpression(operator, left, right));
+			}
+			// Pop left parens.
+			operators.pop();
+			leftParensExists = false;
+		};
 
-            const right = operands.pop();
-            const left = operands.pop();
-            operands.push(new BinaryOperationExpression(operator, left, right));
-        }
+		const onLeftParens = () => {
+			operators.push('(');
+			leftParensExists = true;
+		};
 
-        const result = operands.pop();
+		while (true) {
+			const token = yield token;
+			const operation = Operation.find(token);
 
-        return result;
-    }
+			if (operation) {
+				onOperator(token);
+			}
+			else if (numberRegex.test(token)) {
+				onNumber(token.indexOf('.') > -1 ? parseFloat(token, 10) : parseInt(token, 10));
+			}
+			else if (token === '(') {
+				onLeftParens();
+			}
+			else if (token === ')') {
+				onRightParens(')');
+			}
+			// End we've reached the end of the line.
+			else if (token === null || token === undefined) {
+				break;
+			}
+		}
+
+		while (operators.length) {
+			const operator = operators.pop();
+
+			// Ignore unclosed left parentheses.
+			if (operator === '(') {
+				continue;
+			}
+
+			const right = operands.pop();
+			const left = operands.pop();
+
+			operands.push(new BinaryOperationExpression(operator, left, right));
+		}
+
+		const result = operands.pop();
+
+		return result;
+	}
 }
