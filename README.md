@@ -1,5 +1,7 @@
 # Calculator
 
+![default](https://github.com/Shabonkerz/calculator/raw/master/img/calc.png)
+
 ### TODO:
 
 * Docs.
