@@ -73,7 +73,7 @@ export default class BinaryExpressionTree {
 		return builder.next().value;
 	}
 
-	static * build () {
+	static *build () {
 		const operators = [];
 		const operands = [];
 		let leftParensExists = false;

@@ -15,6 +15,7 @@ export default Ember.Component.extend(Ember.Evented, {
 
 	display: '0',
 	calculator: new Calculator(),
+	history: null,
 
 	keyPress (e) {
 		this.trigger('keypress:' + e.charCode, e);
@@ -25,6 +26,18 @@ export default Ember.Component.extend(Ember.Evented, {
 			.on('change', (value) => {
 				this.set('display', value);
 			});
+	},
+
+	init () {
+		this.set('calculator.history', Ember.A(this.get('calculator.history')));
+
+		// HACK: Find a way to not use monkeypatching.
+		this.get('calculator.history').push = this.get('calculator.history').pushObject;
+
+		const binding = Ember.Binding.from('calculator.history').to('history');
+
+		binding.connect(this);
+		this._super();
 	},
 
 	onDisplayValueChange: function () {
@@ -49,7 +62,9 @@ export default Ember.Component.extend(Ember.Evented, {
 
 
 	actions: {
-
+		backspace () {
+			this.get('calculator.display').backspace();
+		},
 		transform (op) {
 			this.get('calculator.display').transform(op);
 		},

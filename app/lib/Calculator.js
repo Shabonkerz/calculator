@@ -5,13 +5,15 @@ import BinaryExpressionTree from './BinaryExpressionTree';
 const numberRegex = /^\d+.?\d*$/;
 
 class HistoryEntry {
-	constructor (expression) {
+	constructor (tree, expression) {
 
 		// String representing the full operation to perform. e.g. '3 * 4 + 8 + 9 - 2'
-		this.expression = expression;
+		this.tree = tree;
 
 		// The result of the calculation.
-		this.result = expression.valueOf();
+		this.result = tree.valueOf();
+
+		this.expression = expression;
 	}
 }
 
@@ -67,6 +69,11 @@ export class Display extends TinyEmitter {
 		this.showingOutput = false;
 		this.emit('change', this._value);
 	}
+
+	backspace () {
+		this._value = this._value.substr(0, this._value.length - 1) || '0';
+		this.emit('change', this._value);
+	}
 }
 
 export default class Calculator {
@@ -79,8 +86,8 @@ export default class Calculator {
 	evaluate () {
 		const result = BinaryExpressionTree.fromString(this.display.value);
 
-		if (!this.display.value === '0') {
-			this.history.push(new HistoryEntry(result));
+		if (this.display.value !== '0') {
+			this.history.push(new HistoryEntry(result, this.display.value));
 		}
 
 		this.display.value = result.valueOf().toString(10);

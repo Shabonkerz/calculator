@@ -2,40 +2,51 @@
 @import 'noselect';
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
 
+$height: 400px;
+
 .calculator {
     @extend .noselect;
 
     font-family: 'Open Sans', sans-serif;
-    width: 300px;
-    height: 400px;
+    width: 600px;
+    height: $height;
     font-size: 1.5em;
     line-height: 1.5em;
     box-sizing: border-box;
+	display: flex;
 
     $offwhite: #EAEAEA;
 
-    $right-button-bg-color: rgb(198, 0, 53);
+    $hot-pink: #FD395F;
+	$dark-navy: #3B484F;
+	$light-navy: #72848B;
+	$dark: #303248;
 
     .row {
         display: flex;
         width: 100%;
     }
 
+	.column {
+		flex: 1;
+	}
+
     .button-row {
         @extend .row;
-        :last-child {
-            color: $offwhite;
-            background-color: $right-button-bg-color;
-            width: 25%;
-        }
-        :last-child.down {
-            background-color: lighten($right-button-bg-color, 10);
-        }
+		.binary {
+			color: $offwhite;
+		}
+		.unary {
+			color: lighten($dark, 10);
+		}
+		.equal {
+			color: $offwhite;
+		}
     }
 
     .button {
-        background-color: $offwhite;
-        color: #72848B;
+        background-color: $dark;
+        color: $hot-pink;
         text-align: center;
         display: inline-block;
         box-sizing: inherit;
@@ -45,34 +56,37 @@
     }
 
     .button.down {
-        background-color: lighten($offwhite, 3);
+        background-color: lighten($dark, 3);
     }
 
     .display {
         text-align: right;
         padding: 16px;
         box-sizing: inherit;
-        background-color: #3B484F;
+        background-color: $hot-pink;
         color: $offwhite;
         font-size: 2em;
-        padding-top: 30px;
+        padding-top: 15px;
         font-weight: 300;
         white-space: nowrap;
         overflow-x: hidden;
         text-overflow: ellipsis;
         flex: 1;
+		height: 3em;
     }
 
-    .zero {
-        flex: 2.25;
-    }
-
-    .divide {
-        flex: 2.05;
-    }
-
-    .calculate {
-        flex: 1;
-        align-content: center;
-    }
+	.history {
+		background-color: $dark;
+        box-sizing: inherit;
+		height: calc(#{$height} + 87px);
+		color: lighten($dark, 30);
+		font-size: 0.75em;
+		padding: 10px;
+		.line {
+			border-bottom: 1px solid lighten($dark, 40);
+		}
+		h1 {
+			color: lighten($dark, 80);
+		}
+	}
 }

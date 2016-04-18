@@ -1,76 +1,84 @@
-<div class="row">
-    <div class="display">{{display}}</div>
+<div class="column">
+	<div class="row">
+	    <div class="display">{{display}}</div>
+	</div>
+	<div class="button-row">
+	    {{#calculator-button class="unary" action=(action 'clear') key='c'}}
+	        C
+	    {{/calculator-button}}
+	    {{#calculator-button class="unary" action=(action 'backspace') key='q'}}
+			&#9003;
+	    {{/calculator-button}}
+	</div>
+	<div class="button-row">
+	    {{#calculator-button class="unary" action=(action 'transform' '+/-') key='n'}}
+	        +/-
+	    {{/calculator-button}}
+	    {{#calculator-button class="unary" action=(action 'transform' '%') key='%'}}
+	        %
+	    {{/calculator-button}}
+	    {{#calculator-button class="unary" action=(action 'append' '(') key='('}}
+	        (
+	    {{/calculator-button}}
+	    {{#calculator-button class="unary" action=(action 'append' ')') key=')'}}
+	        )
+	    {{/calculator-button}}
+	</div>
+	<div class="button-row">
+	    {{#calculator-button action=(action 'append' '1') key='1'}}
+	        1
+	    {{/calculator-button}}
+	    {{#calculator-button action=(action 'append' '2') key='2'}}
+	        2
+	    {{/calculator-button}}
+	    {{#calculator-button action=(action 'append' '3') key='3'}}
+	        3
+	    {{/calculator-button}}
+	    {{#calculator-button class="binary" action=(action 'append' '/') key='/'}}
+	        &divide;
+	    {{/calculator-button}}
+	</div>
+	<div class="button-row">
+	    {{#calculator-button action=(action 'append' '4') key='4'}}
+	        4
+	    {{/calculator-button}}
+	    {{#calculator-button action=(action 'append' '5') key='5'}}
+	        5
+	    {{/calculator-button}}
+	    {{#calculator-button action=(action 'append' '6') key='6'}}
+	        6
+	    {{/calculator-button}}
+	    {{#calculator-button class="binary" action=(action 'append' '*') key='*'}}
+	        ×
+	    {{/calculator-button}}
+	</div>
+	<div class="button-row">
+	    {{#calculator-button action=(action 'append' '7') key='7'}}
+	        7
+	    {{/calculator-button}}
+	    {{#calculator-button action=(action 'append' '8') key='8'}}
+	        8
+	    {{/calculator-button}}
+	    {{#calculator-button action=(action 'append' '9') key='9'}}
+	        9
+	    {{/calculator-button}}
+	    {{#calculator-button class="binary" action=(action 'append' '-') key='-'}}
+	        -
+	    {{/calculator-button}}
+	</div>
+	<div class="button-row">
+	    {{#calculator-button action=(action 'append' '0') key='0'}}
+	        0
+	    {{/calculator-button}}
+	    {{#calculator-button action=(action 'append' '.') key='.'}}
+	        .
+	    {{/calculator-button}}
+	    {{#calculator-button class="equal" action=(action 'evaluate') key='='}}
+	        =
+	    {{/calculator-button}}
+	    {{#calculator-button class="binary" action=(action 'append' '+') key='+'}}
+	        +
+	    {{/calculator-button}}
+	</div>
 </div>
-<div class="button-row">
-    {{#calculator-button action=(action 'clear') key='c'}}
-        C
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'transform' '+/-') key='n'}}
-        +/-
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'transform' '%') key='%'}}
-        %
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '(') key='('}}
-        (
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' ')') key=')'}}
-        )
-    {{/calculator-button}}
-    {{#calculator-button class="divide" action=(action 'append' '/') key='/'}}
-        &divide;
-    {{/calculator-button}}
-</div>
-<div class="button-row">
-    {{#calculator-button action=(action 'append' '1') key='1'}}
-        1
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '2') key='2'}}
-        2
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '3') key='3'}}
-        3
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '*') key='*'}}
-        ×
-    {{/calculator-button}}
-</div>
-<div class="button-row">
-    {{#calculator-button action=(action 'append' '4') key='4'}}
-        4
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '5') key='5'}}
-        5
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '6') key='6'}}
-        6
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '-') key='-'}}
-        -
-    {{/calculator-button}}
-</div>
-<div class="button-row">
-    {{#calculator-button action=(action 'append' '7') key='7'}}
-        7
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '8') key='8'}}
-        8
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '9') key='9'}}
-        9
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '+') key='+'}}
-        +
-    {{/calculator-button}}
-</div>
-<div class="button-row">
-    {{#calculator-button class="zero" action=(action 'append' '0') key='0'}}
-        0
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'append' '.') key='.'}}
-        .
-    {{/calculator-button}}
-    {{#calculator-button action=(action 'evaluate') key='='}}
-        =
-    {{/calculator-button}}
-</div>
+{{history-list items=history}}
